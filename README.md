@@ -34,3 +34,7 @@ Hrvatski glas: najbolje radi u pregledniku **Edge** (Windows i Android) ili uz i
 | `ucilica-offline.html` | ista igra u jednoj datoteci, za otvaranje bez poslužitelja |
 
 Sav napredak (zvjezdice, medalje, statistika, ime) sprema se samo lokalno u pregledniku na uređaju. Igra ne šalje nikakve podatke.
+
+## Podrška ☕
+
+Učilica je besplatna, bez reklama i bez plaćanja unutar igre. Ako želite podržati daljnji razvoj, autora možete častiti kavom preko KEKS Paya: **#markof355** ([poveznica](https://kekspay.hr/keks?a=kekstag&tag=%23markof355)). Isti gumb nalazi se u igri, u kutku *Za roditelje*.

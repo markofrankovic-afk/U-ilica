@@ -255,6 +255,7 @@ main{flex:1;min-height:0;overflow:auto;padding:16px;display:flex;flex-direction:
 .bdayline{font:600 20px var(--display);color:#c2255c;text-align:center;margin:0}
 .namegrid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:820px;margin:10px auto}.namebtn{min-width:96px;font-size:20px}.namebtn.on{background:var(--c-slova);color:#fff}
 .kidinp{font:600 22px var(--body);padding:10px 14px;border-radius:14px;border:3px solid var(--line);min-width:220px;text-align:center}.kidinp.small{min-width:0;width:110px}
+.donate{margin-top:14px;text-align:center}.donate img.qr{width:200px;height:200px;image-rendering:pixelated;border-radius:12px;margin:8px auto;display:block}
 </style>
 </head>
 <body>
@@ -280,6 +281,7 @@ const rnd=n=>Math.floor(Math.random()*n);const pick=a=>a[rnd(a.length)];
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;};
 /* ================= DIJETE: ime, spol, rođendan ================= */
 const DEFAULT_KID=/*DEFAULT_KID*/null;
+const SHOW_DONATE=true;
 const KIDNAMES={z:['Ana','Dora','Elena','Ema','Eva','Iva','Klara','Lana','Lara','Laura','Lea','Leona','Lucija','Marta','Mia','Mila','Nika','Nora','Petra','Rita','Sara','Tea','Tena','Una','Vita','Zara'],
   m:['Ante','Borna','David','Duje','Fran','Filip','Gabriel','Ivan','Jakov','Josip','Karlo','Leon','Lovro','Luka','Marko','Mateo','Niko','Noa','Patrik','Petar','Roko','Teo','Toma','Vito']};
 const KSPEC={Petar:{v:'Petre',p:'Petrov'},Jakov:{v:'Jakove',p:'Jakovljev'},Lovro:{p:'Lovrin'},Josip:{v:'Josipe'},Ante:{p:'Antin'},Duje:{p:'Dujin'},Lea:{p:'Lein'},Tea:{p:'Tein'},Noa:{p:'Noin'},Mia:{p:'Mijin'}};
@@ -1163,6 +1165,13 @@ function parentCorner(){const w=screen('Za roditelje',home,'var(--ink)');const s
   c.appendChild(el('div','lbl','Dnevno vrijeme (poslije toga dolazi poruka za odmor)'));const lm=el('div','seg');const cur=load('limit',0);[[0,'Bez'],[15,'15 min'],[30,'30 min'],[45,'45 min']].forEach(([v,n])=>{const b=button(v===cur?'on':'',n,()=>{store('limit',v);[...lm.children].forEach(x=>x.classList.toggle('on',x===b));});lm.appendChild(b);});c.appendChild(lm);
   c.appendChild(el('div','lbl','Pregled iznenađenja'));{const pr=el('div','row');pr.appendChild(button('btn soft',`🎂 Rođendan (${BDAY.d}.${BDAY.m+1}.)`,birthdayScreen));pr.appendChild(button('btn soft','🎄 Advent (pregled)',()=>adventScreen(true)));c.appendChild(pr);}
   const rz=button('btn soft','Obriši statistiku',()=>{if(rz.dataset.ok){store('stats',{});parentCorner();}else{rz.dataset.ok=1;rz.textContent='Sigurno? Dodirni još jednom';}});c.appendChild(rz);
+  if(SHOW_DONATE){const d=el('div','card donate');d.appendChild(el('div','word','☕ Častite autora kavom'));
+    d.appendChild(el('p','sub','Učilica je besplatna i ostat će besplatna, bez reklama i bez skrivenih plaćanja. Ako vam se sviđa i želite podržati daljnji razvoj, autoru možete poslati donaciju preko KEKS Paya. Hvala!'));
+    const L='https://kekspay.hr/keks?a=kekstag&tag=%23markof355';const r=el('div','row');
+    r.appendChild(button('btn','💚 Doniraj preko KEKS Paya',()=>{window.open(L,'_blank','noopener');}));
+    const cp=button('btn soft','📋 Kopiraj #markof355',()=>{try{navigator.clipboard.writeText('#markof355');cp.textContent='✔ Kopirano';}catch(e){}});r.appendChild(cp);d.appendChild(r);
+    d.appendChild(el('img','qr'));d.lastChild.src='data:image/png;base64,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';d.lastChild.alt='QR kod za donaciju';
+    d.appendChild(el('p','sub','Skenirajte QR kod aplikacijom KEKS Pay ili pošaljite iznos na #kekstag: <b>#markof355</b>'));w.appendChild(d);}
   w.appendChild(c);}
 
 /* ================= MOJA HRVATSKA ================= */

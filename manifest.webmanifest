@@ -3,8 +3,8 @@
  "short_name": "Učilica",
  "description": "Edukativna igra za djecu na hrvatskom: slova, brojke, čitanje, računanje, priče, engleski i još puno toga.",
  "lang": "hr",
- "start_url": "./",
- "scope": "./",
+ "start_url": "/U-ilica/",
+ "scope": "/U-ilica/",
  "display": "standalone",
  "orientation": "any",
  "background_color": "#f7f6fb",
@@ -26,5 +26,6 @@
    "type": "image/png",
    "purpose": "maskable"
   }
- ]
+ ],
+ "id": "/U-ilica/"
 }
